@@ -22,7 +22,8 @@ app.post('/repos', function (req, res) {
     if (err) {
       res.status(400).send()
     } else {
-      console.log('data inside app.post ', data)
+      // need to parse array before running forEach
+      console.log('data inside app.post ', Array.isArray(data))
       data.forEach(repo => db.save(repo, (err, doc) => {
         if (err) {
           res.status(400).send()

@@ -55,3 +55,21 @@ let save = (data, callback) => {
 module.exports.save = save;
 
 // in mongo, if you don't have any data in your table you won't be able to see your table
+var testRepo = new Repo({
+  name: "Rimuru",
+  id: 1,
+  html_url: "thattimeigotreincarnatedasaslime.com",
+  created_at: "2014-03-28T17:55:38Z",
+  updated_at: "2014-03-28T17:55:38Z",
+  pushed_at: "2014-03-28T17:55:38Z",
+  size: 2,
+  forks: 3
+})
+
+// testRepo.save((err, doc) => {
+//   if (err) {
+//     console.log('error saving ', err)
+//   } else {
+//     console.log('successful saving')
+//   }
+// })

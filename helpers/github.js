@@ -34,10 +34,11 @@ let getReposByUsername = (username, callback) => {
     //   callback(null)
     // })
   request.get(options, (err, response, data) => {
+    var parsedData = JSON.parse(data);
     if (err) {
       callback(err)
     } else {
-      callback(null, data)
+      callback(null, parsedData)
     }
   })
 }
