@@ -16,7 +16,7 @@ let getReposByUsername = (username, callback) => {
       'Authorization': `token ${config.TOKEN}`
     }
   };
-  axios.get(`https://api.github.com/users/${username}/repos`)
+  // axios.get(`https://api.github.com/users/${username}/repos`)
   // this is a promise
   // axios(options)
     // .then((data) => {
