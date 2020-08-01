@@ -1,5 +1,7 @@
 const axios = require('axios');
 const config = require('../config.js');
+const circularJSON = require('circular-json');
+const request = require('request');
 
 let getReposByUsername = (username, callback) => {
   // TODO - Use the axios module to request repos for a specific
@@ -14,19 +16,30 @@ let getReposByUsername = (username, callback) => {
       'Authorization': `token ${config.TOKEN}`
     }
   };
+  axios.get(`https://api.github.com/users/${username}/repos`)
   // this is a promise
-  axios(options)
-    .then((err, data) => {
-      if (err) {
-        callback(err, null)
-      } else {
-        callback(null, data)
-      }
-    })
-    .catch((err) => {
+  // axios(options)
+    // .then((data) => {
+    //   // var json = circularJSON.stringify(data)
+    //   console.log('hi from inside then block')
+    //   // console.log('data ', json)
+    //   callback(null, data)
+    // })
+    // .then((response) => {
+    //   console.log('response ', response)
+    // })
+    // .catch((err) => {
+    //   var json = circularJSON.stringify(err)
+    //   console.log('err ', json)
+    //   callback(null)
+    // })
+  request.get(options, (err, response, data) => {
+    if (err) {
       callback(err)
-    })
-
+    } else {
+      callback(null, data)
+    }
+  })
 }
 
 module.exports.getReposByUsername = getReposByUsername;

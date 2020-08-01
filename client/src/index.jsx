@@ -19,10 +19,11 @@ class App extends React.Component {
     console.log(`${term} was searched`);
     // could send an axios post request and in the then promise could call an axios get request?
     axios.post('/repos', {
+      // cannot use data because that's a special key for axios
       username: term
     })
-      .then(() => console.log('axios get request worked'))
-      .catch(() => console.log('axios get request DID NOT WORK'))
+      .then((data) => console.log(data))
+      .catch(() => console.log('axios post request DID NOT WORK'))
   }
 
   render () {

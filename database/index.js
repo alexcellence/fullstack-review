@@ -11,6 +11,7 @@ db.once('open', function() {
 let repoSchema = new mongoose.Schema({
   // TODO: your schema here!
   // these are all the properties that we want to save from the github users
+  // set id as mongoose.ObjectId in an effort to avoid duplicates
   name: String,
   id: Number,
   html_url: String,
@@ -23,8 +24,15 @@ let repoSchema = new mongoose.Schema({
 
 let Repo = mongoose.model('Repo', repoSchema);
 
-let save = (/* TODO */) => {
+let save = (repo, callback) => {
   // TODO: Your code here
+  repo.save((err, data) => {
+    if (err) {
+      callback(err);
+    } else {
+      callback(null, data);
+    }
+  })
   // This function should save a repo or repos to
   // the MongoDB
 }
